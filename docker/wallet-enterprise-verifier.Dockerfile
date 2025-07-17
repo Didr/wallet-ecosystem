@@ -4,11 +4,10 @@ WORKDIR /dependencies
 
 RUN apt-get update && apt-get install -y git
 
-# Install dependencies first so rebuild of these layers is only needed when dependencies change
-COPY lib/ ./lib/
+RUN git clone --branch master --single-branch --depth 1 https://github.com/wwWallet/wallet-common.git /lib/wallet-common
 
-WORKDIR /dependencies/lib/wallet-common
-RUN yarn install && yarn cache clean -f && yarn build && mkdir -p /app/lib && mv /dependencies/lib/wallet-common /app/lib/wallet-common
+WORKDIR /lib/wallet-common
+RUN yarn install && yarn build && mkdir -p /app/lib && mv /dependencies/lib/wallet-common /app/lib/wallet-common
 
 WORKDIR /app
 COPY wallet-enterprise/ .
