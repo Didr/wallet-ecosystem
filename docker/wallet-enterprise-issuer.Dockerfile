@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y git
 RUN git clone --branch master --single-branch --depth 1 https://github.com/wwWallet/wallet-common.git /lib/wallet-common
 
 WORKDIR /lib/wallet-common
-RUN yarn install && yarn build && mkdir -p /app/lib && mv /dependencies/lib/wallet-common /app/lib/wallet-common
+RUN yarn install && yarn build && mkdir -p /app/lib && mv /lib/wallet-common /app/lib/wallet-common
 
 WORKDIR /app
 COPY wallet-enterprise/ .
