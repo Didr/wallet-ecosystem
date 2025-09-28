@@ -13,6 +13,7 @@ COPY ./wallet-enterprise-configurations/issuer/src/configuration/ src/configurat
 COPY ./wallet-enterprise-configurations/issuer/public/styles/main.css public/styles/main.css
 COPY ./wallet-enterprise-configurations/issuer/public/images/ public/images/
 
+RUN rm -rf .git
 RUN yarn cache clean && yarn install && yarn build && rm -rf node_modules/ && yarn install --production
 
 # Production stage
