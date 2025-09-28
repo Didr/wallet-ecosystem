@@ -12,6 +12,7 @@ COPY ./wallet-enterprise-configurations/acme-verifier/src/configuration/ /app/sr
 COPY ./wallet-enterprise-configurations/acme-verifier/public/styles/main.css /app/public/styles/main.css
 COPY ./wallet-enterprise-configurations/acme-verifier/public/images /app/public/images
 
+RUN rm -rf .git
 RUN yarn cache clean && yarn install && yarn build && rm -rf node_modules/ && yarn install --production
 
 # Production stage
